@@ -300,6 +300,8 @@ extension Vector3MathOps on Vector3 {
   Vector3 toDegrees() => Vector3(x.toDegrees(), y.toDegrees(), z.toDegrees());
   Vector3 sqr() => Vector3(x.sqr(), y.sqr(), z.sqr());
   Vector3 cube() => Vector3(x.cube(), y.cube(), z.cube());
+
+  Vector3 clone() => Vector3(x, y, z);
 }
 
 extension Vector3MathOptsStats on Stats<Vector3> {

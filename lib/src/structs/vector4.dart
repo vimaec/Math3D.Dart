@@ -230,6 +230,8 @@ extension Vector4MathOps on Vector4 {
       Vector4(x.toDegrees(), y.toDegrees(), z.toDegrees(), w.toDegrees());
   Vector4 sqr() => Vector4(x.sqr(), y.sqr(), z.sqr(), w.sqr());
   Vector4 cube() => Vector4(x.cube(), y.cube(), z.cube(), w.cube());
+
+  Vector4 clone() => Vector4(x, y, z, w);
 }
 
 extension Vector4MathOptsStats on Stats<Vector4> {
