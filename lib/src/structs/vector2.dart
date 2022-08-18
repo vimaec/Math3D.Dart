@@ -200,6 +200,8 @@ extension Vector2MathOps on Vector2 {
   Vector2 toDegrees() => Vector2(x.toDegrees(), y.toDegrees());
   Vector2 sqr() => Vector2(x.sqr(), y.sqr());
   Vector2 cube() => Vector2(x.cube(), y.cube());
+
+  Vector2 clone() => Vector2(x, y);
 }
 
 extension Vector2MathOptsStats on Stats<Vector2> {
