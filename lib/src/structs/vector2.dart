@@ -20,6 +20,7 @@ class Vector2 implements Comparable<Vector2>, ITransformable3D<Vector2> {
   @override
   int get hashCode => Hash.combine(x.hashCode, y.hashCode);
 
+  Vector2 clone() => Vector2(x, y);
   double pointCrossProduct(Vector2 other) => x * other.y - other.x * y;
   // Computes the cross product of two vectors.
   double cross(Vector2 v2) => x * v2.y - y * v2.x;
@@ -94,8 +95,10 @@ class Vector2 implements Comparable<Vector2>, ITransformable3D<Vector2> {
     return Vector2(x * (1.0 - yy2 - zz2) + y * (xy2 - wz2),
         x * (xy2 + wz2) + y * (1.0 - xx2 - zz2));
   }
+
   Vector4 toVector4() => Vector4(x, y, 0.0, 0.0);
   Vector3 toVector3() => Vector3(x, y, 0.0);
+  HorizontalCoordinate toHorizontalCoordinate() => HorizontalCoordinate(x, y);
 
   @override
   String toString() => "Vector2(X = $x, Y = $y)";
@@ -200,8 +203,6 @@ extension Vector2MathOps on Vector2 {
   Vector2 toDegrees() => Vector2(x.toDegrees(), y.toDegrees());
   Vector2 sqr() => Vector2(x.sqr(), y.sqr());
   Vector2 cube() => Vector2(x.cube(), y.cube());
-
-  Vector2 clone() => Vector2(x, y);
 }
 
 extension Vector2MathOptsStats on Stats<Vector2> {

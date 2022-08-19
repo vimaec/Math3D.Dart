@@ -284,6 +284,7 @@ class Quaternion {
 
   // Returns a rotation matrix.
   Matrix4x4 toMatrix() => Matrix4x4.rotation(this);
+  HorizontalCoordinate toHorizontalCoordinate() => toSphericalAngle();
 
   @override
   String toString() => "Quaternion(X = $x, Y = $y, Z = $z, W = $w)";
