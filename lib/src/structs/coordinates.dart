@@ -258,6 +258,9 @@ class HorizontalCoordinate implements Comparable<HorizontalCoordinate> {
   double magnitudeSquared() => sumSqrComponents();
   double magnitude() => magnitudeSquared().sqrt();
 
+  Vector2 toVector2() => Vector2(azimuth, inclination);
+  Quaternion toQuaternion() => Quaternion.fromHorizontalCoordinate(this);
+
   @override
   int compareTo(HorizontalCoordinate x) =>
       (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();

@@ -32,6 +32,7 @@ class Vector3 implements Comparable<Vector3>, ITransformable3D<Vector3> {
   @override
   int get hashCode => Hash.combine3(x.hashCode, y.hashCode, z.hashCode);
 
+  Vector3 clone() => Vector3(x, y, z);
   /// Computes the cross product of two vectors.
   Vector3 cross(Vector3 vector2) => Vector3(y * vector2.z - z * vector2.y,
       z * vector2.x - x * vector2.z, x * vector2.y - y * vector2.x);
@@ -300,8 +301,6 @@ extension Vector3MathOps on Vector3 {
   Vector3 toDegrees() => Vector3(x.toDegrees(), y.toDegrees(), z.toDegrees());
   Vector3 sqr() => Vector3(x.sqr(), y.sqr(), z.sqr());
   Vector3 cube() => Vector3(x.cube(), y.cube(), z.cube());
-
-  Vector3 clone() => Vector3(x, y, z);
 }
 
 extension Vector3MathOptsStats on Stats<Vector3> {
