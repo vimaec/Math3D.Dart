@@ -195,11 +195,12 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
   // Creates a spherical billboard that rotates around a specified object position.
   factory Matrix4x4.billboard(Vector3 objectPosition, Vector3 cameraPosition,
       Vector3 cameraUpVector, Vector3 cameraForwardVector) {
-    double epsilon = 0.0001;
+    const double epsilon = 0.0001;
     var zaxis = Vector3(
-        objectPosition.x - cameraPosition.x,
-        objectPosition.y - cameraPosition.y,
-        objectPosition.z - cameraPosition.z);
+      objectPosition.x - cameraPosition.x,
+      objectPosition.y - cameraPosition.y,
+      objectPosition.z - cameraPosition.z,
+    );
     final norm = zaxis.lengthSquared;
     if (norm < epsilon) {
       zaxis = -cameraForwardVector;
@@ -1268,8 +1269,11 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
   /// implementation is equally valid.
   /// NOTE: This could probably be improved to handle more generic cases by using
   /// CrossProduct to determine axis flipping: (X Cross Y) Dot Z < 0 == Flip
-  Vector3 extractDirectScale() => Vector3(row0.length * (m11 > 0.0 ? 1 : -1),
-      row1.length * (m22 > 0.0 ? 1 : -1), row2.length * (m33 > 0.0 ? 1 : -1));
+  Vector3 extractDirectScale() => Vector3(
+        row0.length * (m11 > 0.0 ? 1 : -1),
+        row1.length * (m22 > 0.0 ? 1 : -1),
+        row2.length * (m33 > 0.0 ? 1 : -1),
+      );
   Vector3 getRow(int row) => row == 0
       ? row0
       : row == 1
@@ -1366,21 +1370,13 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
         if (fAbsY < fAbsZ) {
           cc = 0;
         } else {
-          if (fAbsX < fAbsZ) {
-            cc = 0;
-          } else {
-            cc = 2;
-          }
+          cc = fAbsX < fAbsZ ? 0 : 2;
         }
       } else {
         if (fAbsX < fAbsZ) {
           cc = 1;
         } else {
-          if (fAbsY < fAbsZ) {
-            cc = 1;
-          } else {
-            cc = 2;
-          }
+          cc = fAbsY < fAbsZ ? 1 : 2;
         }
       }
       pVectorBasis[b] = pVectorBasis[a].cross(pCanonicalBasis[cc]);
@@ -1396,8 +1392,10 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
 
     // Update mat tmp;
     var det = Matrix4x4.fromVector3Rows(
-            pVectorBasis[0], pVectorBasis[1], pVectorBasis[2])
-        .getDeterminant();
+      pVectorBasis[0],
+      pVectorBasis[1],
+      pVectorBasis[2],
+    ).getDeterminant();
 
     // use Kramer's rule to check for handedness of coordinate system
     if (det < 0.0) {
@@ -1445,7 +1443,7 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
       ];
 
   static List<double> toFloatsArray(List<Matrix4x4> matrixArray) {
-    final ret = <double>[];
+    final ret = List.filled(matrixArray.length, 0.0);
     for (var i = 0; i < matrixArray.length; i++) {
       final j = i * 16;
       ret[j + 0] = matrixArray[i].m11;
@@ -1467,13 +1465,13 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
     }
     return ret;
   }
-
   static List<Matrix4x4> toMatrixArray(List<double> m) {
     assert((m.length % 16) == 0);
-    List<Matrix4x4> ret = <Matrix4x4>[];
-    for (var i = 0; i < ret.length; i++) {
+    final length = m.length / 16;
+    final ret = <Matrix4x4>[];
+    for (var i = 0; i < length; i++) {
       final i16 = i * 16;
-      ret[i] = Matrix4x4(
+      ret.add(Matrix4x4(
           m[i16 + 0],
           m[i16 + 1],
           m[i16 + 2],
@@ -1489,7 +1487,7 @@ class Matrix4x4 implements ITransformable3D<Matrix4x4> {
           m[i16 + 12],
           m[i16 + 13],
           m[i16 + 14],
-          m[i16 + 15]);
+          m[i16 + 15]));
     }
     return ret;
   }

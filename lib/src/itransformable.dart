@@ -7,7 +7,7 @@ abstract class ITransformable3D<TSelf> {
 extension Transformable3D<T> on ITransformable3D<T> {
   static Matrix4x4 multiply(Iterable<Matrix4x4> matrices) {
     var seed = Matrix4x4.identity;
-    for (var m in matrices) {
+    for (final m in matrices) {
       seed = seed * m;
     }
     return seed;
