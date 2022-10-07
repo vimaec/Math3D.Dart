@@ -39,7 +39,7 @@ class Hash {
 
   static int hashValues(Iterable<int> values) {
     var acc = 0;
-    for (var x in values) {
+    for (final x in values) {
       acc = combine(acc, x);
     }
     return acc;

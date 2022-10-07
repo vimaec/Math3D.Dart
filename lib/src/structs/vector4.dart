@@ -249,7 +249,7 @@ extension Vector4MathOptsIterable on Iterable<Vector4> {
   Vector4 middle() => stats().middle();
   Stats<Vector4> stats() {
     var a = const Stats<Vector4>(0, Vector4.zero, Vector4.zero, Vector4.zero);
-    for (var b in this) {
+    for (final b in this) {
       a = Stats<Vector4>(a.count + 1, b.min(a.min), b.max(a.max), a.sum + b);
     }
     return a;

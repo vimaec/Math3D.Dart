@@ -320,7 +320,7 @@ extension Vector3MathOptsIterable on Iterable<Vector3> {
   AABox toBox() => AABox.points(this);
   Stats<Vector3> stats() {
     var a = const Stats<Vector3>(0, Vector3.zero, Vector3.zero, Vector3.zero);
-    for (var b in this) {
+    for (final b in this) {
       a = Stats<Vector3>(a.count + 1, b.min(a.min), b.max(a.max), a.sum + b);
     }
     return a;

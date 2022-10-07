@@ -28,7 +28,7 @@ class Sphere implements ITransformable3D<Sphere> {
 
     // Find the most extreme points along the principle axis.
     var numPoints = 0;
-    for (var pt in points) {
+    for (final pt in points) {
       ++numPoints;
       if (pt.x < minx.x) {
         minx = pt;
@@ -73,14 +73,14 @@ class Sphere implements ITransformable3D<Sphere> {
     // From: Mathematics for 3D Game Programming and Computer Graphics, Eric Lengyel, Third Edition.
     // Page 218
     var sqRadius = radius * radius;
-    for (var pt in points) {
-      var diff = pt - center;
-      var sqDist = diff.lengthSquared;
+    for (final pt in points) {
+      final diff = pt - center;
+      final sqDist = diff.lengthSquared;
       if (sqDist > sqRadius) {
-        var distance = sqDist.sqrt();
+        final distance = sqDist.sqrt();
         // equal to diff.Length();
-        var direction = diff / distance;
-        //var g = center - radius * direction;
+        final direction = diff / distance;
+        //final g = center - radius * direction;
         final g = center - direction * radius;
         center = (g + pt) / 2.0;
         radius = pt.distance(center);
@@ -152,7 +152,7 @@ class Sphere implements ITransformable3D<Sphere> {
   ContainmentType containsBox(AABox box) {
     //check if all corner is in sphere
     var inside = true;
-    for (var corner in box.corners) {
+    for (final corner in box.corners) {
       if (containsVector3(corner) == ContainmentType.disjoint) {
         inside = false;
         break;

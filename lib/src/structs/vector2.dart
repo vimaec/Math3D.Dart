@@ -221,7 +221,7 @@ extension Vector2MathOptsIterable on Iterable<Vector2> {
   Vector2 middle() => stats().middle();
   Stats<Vector2> stats() {
     var a = const Stats<Vector2>(0, Vector2.zero, Vector2.zero, Vector2.zero);
-    for (var b in this) {
+    for (final b in this) {
       a = Stats<Vector2>(a.count + 1, b.min(a.min), b.max(a.max), a.sum + b);
     }
     return a;

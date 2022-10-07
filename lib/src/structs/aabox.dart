@@ -24,7 +24,7 @@ class AABox implements Comparable<AABox>, ITransformable3D<AABox> {
     var minVec = Vector3.maxValue;
     var maxVec = Vector3.minValue;
     if (points != null) {
-      for (var pt in points) {
+      for (final pt in points) {
         minVec = minVec.min(pt);
         maxVec = maxVec.max(pt);
       }
@@ -157,7 +157,7 @@ class AABox implements Comparable<AABox>, ITransformable3D<AABox> {
   // This is the four front corners followed by the four back corners all as if looking from the front
   // going in counter-clockwise order from bottom left.
   List<Vector3> getCorners([List<Vector3>? corners]) {
-    corners = corners ?? <Vector3>[];
+    corners = corners ?? List.filled(8, Vector3.zero);
     if (corners.length < 8) {
       throw RangeError.range(corners.length, 0, 8);
     }
@@ -290,13 +290,16 @@ class AABox implements Comparable<AABox>, ITransformable3D<AABox> {
   AABox intersection(AABox other) =>
       AABox(min.max(other.min), max.min(other.max));
   static List<AABox> toAABoxArray(List<double> m) {
-    int numFloats = 6;
+    const int numFloats = 6;
     assert((m.length % numFloats) == 0);
+    final length = m.length / numFloats;
     final ret = <AABox>[];
-    for (var i = 0; i < ret.length; i++) {
+    for (var i = 0; i < length; i++) {
       final i6 = i * numFloats;
-      ret[i] = AABox(Vector3(m[i6 + 0], m[i6 + 1], m[i6 + 2]),
-          Vector3(m[i6 + 3], m[i6 + 4], m[i6 + 5]));
+      ret.add(AABox(
+        Vector3(m[i6 + 0], m[i6 + 1], m[i6 + 2]),
+        Vector3(m[i6 + 3], m[i6 + 4], m[i6 + 5]),
+      ));
     }
     return ret;
   }
@@ -347,7 +350,7 @@ class AABox2D implements Comparable<AABox2D> {
   factory AABox2D.points(Iterable<Vector2> points) {
     var minVec = Vector2.maxValue;
     var maxVec = Vector2.minValue;
-    for (var pt in points) {
+    for (final pt in points) {
       minVec = minVec.min(pt);
       maxVec = maxVec.max(pt);
     }
