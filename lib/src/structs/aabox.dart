@@ -31,6 +31,9 @@ class AABox implements Comparable<AABox>, ITransformable3D<AABox> {
     }
     return AABox(minVec, maxVec);
   }
+  AABox.fromList(List<double> m) : this(
+    Vector3(m[0], m[1], m[2]), 
+    Vector3(m[3], m[4], m[5]));
   factory AABox.fromSphere(Sphere sphere) => AABox(
       sphere.center - Vector3.value(sphere.radius),
       sphere.center + Vector3.value(sphere.radius));
