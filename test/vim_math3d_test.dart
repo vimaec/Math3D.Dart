@@ -1343,6 +1343,17 @@ void main() {
       expect(equalDouble(euler.y, euler2.y, 0.001), true);
       expect(equalDouble(euler.z, euler2.z, 0.001), true);
     });
+
+    test('CreateRotationFromAtoBTest', () {
+      const a = Vector3(0.57731324, 0.57728577, 0.5774519);
+      const b = Vector3(0.57738256, 0.57728577, 0.57738256);
+      // Assert precondition that a and b are normalized.
+      expect(equalDouble(a.normalize().length, a.length, 0.001), true);
+      expect(equalDouble(b.normalize().length, b.length, 0.001), true);
+      // Validate that the returned quaternion does not contain NaN due to precision issues
+      final quat = Quaternion.rotationFromAToB(a, b);
+      expect(quat == Quaternion.identity, true);
+    });
   });
 
   group('Vector2Tests', () {

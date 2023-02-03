@@ -1,6 +1,6 @@
 name: vim_math3d
 description: Math3D is an efficient low-level math library forked from System.Numerics and MonoGame with additional functionality and a strict struct layout for cross platform serialization.
-version: 0.0.1
+version: 1.6.1
 homepage: 'https://www.vimaec.com/'
 
 environment:

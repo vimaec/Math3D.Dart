@@ -66,8 +66,11 @@ class Quaternion {
 
   /// Creates a new Quaternion rotating vector 'fromA' to 'toB'.<br
   /// Precondition: fromA and toB are normalized.
-  factory Quaternion.rotationFromAToB(Vector3 fromA, Vector3 toB,
-      [Vector3 up = Vector3.unitZ]) {
+  factory Quaternion.rotationFromAToB(
+    Vector3 fromA,
+    Vector3 toB, [
+    Vector3 up = Vector3.unitZ,
+  ]) {
     final axis = fromA.cross(toB);
     final lengthSquared = axis.lengthSquared;
     // The vectors are parallel to each other
@@ -75,7 +78,7 @@ class Quaternion {
     // The vectors are in the same direction so no rotation is required.
     return lengthSquared > 0.0
         ? Quaternion.fromAxisAndAngle(
-            axis / lengthSquared.sqrt(), fromA.dot(toB).acos())
+            axis / lengthSquared.sqrt(), fromA.dot(toB).clamp(-1, 1).acos())
         : (fromA + toB).almostZero()
             ? Quaternion.fromAxisAndAngle(up, Constants.pi)
             : identity;
