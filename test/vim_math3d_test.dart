@@ -5718,7 +5718,7 @@ void main() {
     // A test for GetHashCode ()
     test('matrix4x4GetHashCodeTest', () {
       final target = generateMatrixNumberFrom1To16();
-      final expected = Hash.hashCodes([
+      final expected = Hash.hashValues([
         target.m11.hashCode,
         target.m12.hashCode,
         target.m13.hashCode,
