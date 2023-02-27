@@ -4,7 +4,7 @@
 
 [Read the API Documentation](https://vimaec.github.io/Math3D) | [Browse the Source](https://github.com/vimaec/Math3D/tree/dev/src) | [Get the Nuget](https://www.nuget.org/packages/Vim.Math3D/)
 
-**Vim.Math3D** is a portable, safe, and efficient 3D math library from [VIM](https://vimaec.com) written in C# 
+**Vim.Math3D** is a portable, safe, and efficient 3D math library from [VIM](https://vimaec.com) written in Dart 
 targeting .NET Standard 2.0 without any dependencies. 
 
 It is intended primarily as a feature rich drop-in replacement for System.Numerics that assures consistent serialization
@@ -18,7 +18,7 @@ Android, iOS, WebGL, and Magic Leap.
 In rough order, the Math3D design goals are:
 
 1. Portability
-	* The library must be pure C# 
+	* The library must be pure Dart 
 	* No unsafe code 
 	* Fixed binary layout of structs in memory
 	* Double and Single precision implementation of most structures 
@@ -36,7 +36,7 @@ In rough order, the Math3D design goals are:
 ## History 
 
 VIM is a company that develops high-performance 3D applications for multiple platforms. Our core development language
-is C#, so we had a need for a robust, efficient, and productive 3D library. We originally started using 
+is Dart, so we had a need for a robust, efficient, and productive 3D library. We originally started using 
 System.Numerics, but we ran into some problems. The first issue was that with System.Numerics different implementations could 
 have different binary layouts of the structures. For example a Vector3 might be aligned on either 12 or 16 byte boundaries 
 depending on the platform. 
@@ -194,7 +194,7 @@ that are auto-generated using the T4 templating engine.
 * [Geometry3Sharp](https://github.com/gradientspace/geometry3Sharp)
 * [FNA-XNA](https://github.com/FNA-XNA/FNA/tree/master/src)
 * [Stride](https://github.com/stride3d/stride/tree/master/sources/core/Stride.Core.Mathematics)
-* [A Vector Type for C# - R Potter via Code Project](https://www.codeproject.com/Articles/17425/A-Vector-Type-for-C)
-* [Godot Engine C# Libraries](https://github.com/godotengine/godot/tree/master/modules/mono/glue/GodotSharp/GodotSharp/Core)
+* [A Vector Type for Dart - R Potter via Code Project](https://www.codeproject.com/Articles/17425/A-Vector-Type-for-C)
+* [Godot Engine Dart Libraries](https://github.com/godotengine/godot/tree/master/modules/mono/glue/GodotSharp/GodotSharp/Core)
 * [GeometRi - Simple and lightweight computational geometry library for .Net](https://github.com/RiSearcher/GeometRi.CSharp)
 * [Veldrid ](https://github.com/mellinoe/veldrid/tree/master/src/Veldrid.Utilities)
