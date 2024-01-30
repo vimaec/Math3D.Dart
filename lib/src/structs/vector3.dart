@@ -24,6 +24,7 @@ class Vector3 implements Comparable<Vector3>, ITransformable3D<Vector3> {
   Vector3 get yZX => Vector3(y, z, x);
 
   const Vector3(this.x, this.y, [this.z = 0]);
+  Vector3.fromList(List<double> m) : this(m[0], m[1], m[2]);
   const Vector3.value(double value) : this(value, value, value);
   Vector3.fromVector2(Vector2 xy, double z) : this(xy.x, xy.y, z);
 

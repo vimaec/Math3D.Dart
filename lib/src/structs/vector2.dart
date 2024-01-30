@@ -13,6 +13,7 @@ class Vector2 implements Comparable<Vector2>, ITransformable3D<Vector2> {
   static const Vector2 unitY = Vector2(0.0, 1.0);
 
   const Vector2(this.x, this.y);
+  Vector2.fromList(List<double> m) : this(m[0], m[1]);
   const Vector2.value(double value) : this(value, value);
 
   bool get isNaN => x.isNaN || y.isNaN;

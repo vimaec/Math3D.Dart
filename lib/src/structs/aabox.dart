@@ -348,6 +348,7 @@ class AABox2D implements Comparable<AABox2D> {
   static const AABox2D maxValue = AABox2D(Vector2.maxValue, Vector2.maxValue);
 
   const AABox2D(this.min, this.max);
+  AABox2D.fromList(List<double> m) : this(Vector2(m[0], m[1]), Vector2(m[2], m[3]));
 
   /// Create a bounding box from the given list of points.
   factory AABox2D.points(Iterable<Vector2> points) {

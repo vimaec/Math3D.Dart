@@ -13,6 +13,7 @@ class Int2 implements Comparable<Int2> {
   static const Int2 unitY = Int2(0, 1);
 
   const Int2(this.x, this.y);
+  Int2.fromList(List<int> m) : this(m[0], m[1]);
   const Int2.value(int value) : this(value, value);
 
   bool get isNaN => x.isNaN || y.isNaN;
@@ -23,8 +24,7 @@ class Int2 implements Comparable<Int2> {
   Int2 setX(int value) => Int2(value, y);
   Int2 setY(int value) => Int2(x, value);
   int dot(Int2 value2) => x * value2.x + y * value2.y;
-  bool almostZero([double tolerance = Constants.tolerance]) =>
-      x.abs() < tolerance && y.abs() < tolerance;
+  bool almostZero([double tolerance = Constants.tolerance]) => x.abs() < tolerance && y.abs() < tolerance;
   bool anyComponentNegative() => minComponent() < 0;
   int minComponent() => (x).min(y);
   int maxComponent() => (x).max(y);
@@ -38,14 +38,12 @@ class Int2 implements Comparable<Int2> {
   Vector2 toVector2() => Vector2(x.toDouble(), y.toDouble());
 
   @override
-  int compareTo(Int2 x) =>
-      (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
+  int compareTo(Int2 x) => (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
   @override
   String toString() => "Int2(X = $x, Y = $y)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Int2 && (x == other.x && y == other.y);
+  bool operator ==(Object other) => other is Int2 && (x == other.x && y == other.y);
 
   Int2 operator +(Object value2) => value2 is Int2
       ? Int2(x + value2.x, y + value2.y)
@@ -93,6 +91,7 @@ class Int3 implements Comparable<Int3> {
   static const Int3 unitZ = Int3(0, 0, 1);
 
   const Int3(this.x, this.y, this.z);
+  Int3.fromList(List<int> m) : this(m[0], m[1], m[2]);
   const Int3.value(int value) : this(value, value, value);
 
   bool get isNaN => x.isNaN || y.isNaN || z.isNaN;
@@ -101,8 +100,7 @@ class Int3 implements Comparable<Int3> {
   int get hashCode => Hash.combine3(x.hashCode, y.hashCode, z.hashCode);
 
   int dot(Int3 value2) => x * value2.x + y * value2.y + z * value2.z;
-  bool almostZero([double tolerance = Constants.tolerance]) =>
-      x.abs() < tolerance && y.abs() < tolerance && z.abs() < tolerance;
+  bool almostZero([double tolerance = Constants.tolerance]) => x.abs() < tolerance && y.abs() < tolerance && z.abs() < tolerance;
   bool anyComponentNegative() => minComponent() < 0;
   int minComponent() => (x).min(y).min(z);
   int maxComponent() => (x).max(y).max(z);
@@ -126,14 +124,12 @@ class Int3 implements Comparable<Int3> {
   Vector3 toVector3() => Vector3(x.toDouble(), y.toDouble(), z.toDouble());
 
   @override
-  int compareTo(Int3 x) =>
-      (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
+  int compareTo(Int3 x) => (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
   @override
   String toString() => "Int3(X = $x, Y = $y, Z = $z)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Int3 && (x == other.x && y == other.y && z == other.z);
+  bool operator ==(Object other) => other is Int3 && (x == other.x && y == other.y && z == other.z);
 
   Int3 operator +(Object value2) => value2 is Int3
       ? Int3(x + value2.x, y + value2.y, z + value2.z)
@@ -183,21 +179,16 @@ class Int4 implements Comparable<Int4> {
   static const Int4 unitW = Int4(0, 0, 0, 1);
 
   const Int4(this.x, this.y, this.z, this.w);
+  Int4.fromList(List<int> m) : this(m[0], m[1], m[2], m[3]);
   const Int4.value(int value) : this(value, value, value, value);
 
   bool get isNaN => x.isNaN || y.isNaN || z.isNaN || w.isNaN;
-  bool get isInfinite =>
-      x.isInfinite || y.isInfinite || z.isInfinite || w.isInfinite;
+  bool get isInfinite => x.isInfinite || y.isInfinite || z.isInfinite || w.isInfinite;
   @override
-  int get hashCode =>
-      Hash.combine4(x.hashCode, y.hashCode, z.hashCode, w.hashCode);
+  int get hashCode => Hash.combine4(x.hashCode, y.hashCode, z.hashCode, w.hashCode);
 
   int dot(Int4 v) => x * v.x + y * v.y + z * v.z + w * v.w;
-  bool almostZero([double tolerance = Constants.tolerance]) =>
-      x.abs() < tolerance &&
-      y.abs() < tolerance &&
-      z.abs() < tolerance &&
-      w.abs() < tolerance;
+  bool almostZero([double tolerance = Constants.tolerance]) => x.abs() < tolerance && y.abs() < tolerance && z.abs() < tolerance && w.abs() < tolerance;
   bool anyComponentNegative() => minComponent() < 0;
   int minComponent() => (x).min(y).min(z).min(w);
   int maxComponent() => (x).max(y).max(z).max(w);
@@ -224,15 +215,12 @@ class Int4 implements Comparable<Int4> {
   Int4 setW(int value) => Int4(x, y, z, value);
 
   @override
-  int compareTo(Int4 x) =>
-      (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
+  int compareTo(Int4 x) => (magnitudeSquared() - x.magnitudeSquared()).sign.toInt();
   @override
   String toString() => "Int4(X = $x, Y = $y, Z = $z, W = $w)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Int4 &&
-      (x == other.x && y == other.y && z == other.z && w == other.w);
+  bool operator ==(Object other) => other is Int4 && (x == other.x && y == other.y && z == other.z && w == other.w);
 
   Int4 operator +(Object value2) => value2 is Int4
       ? Int4(x + value2.x, y + value2.y, z + value2.z, w + value2.w)
