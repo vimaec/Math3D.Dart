@@ -9,6 +9,7 @@ class Byte2 {
   // static Byte2 MaxValue = Byte2(.maxValue, .maxValue);
 
   const Byte2(this.x, this.y);
+  Byte2.fromList(List<int> m) : this(m[0], m[1]);
   const Byte2.value(int value) : this(value, value);
 
   @override
@@ -21,8 +22,7 @@ class Byte2 {
   String toString() => "Byte2(X = $x, Y = $y)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Byte2 && (x == other.x && y == other.y);
+  bool operator ==(Object other) => other is Byte2 && (x == other.x && y == other.y);
 }
 
 class Byte3 {
@@ -35,6 +35,7 @@ class Byte3 {
   // static Byte3 MaxValue = Byte3(.maxValue, .maxValue, .maxValue);
 
   const Byte3(this.x, this.y, this.z);
+  Byte3.fromList(List<int> m) : this(m[0], m[1], m[2]);
   const Byte3.value(int value) : this(value, value, value);
 
   @override
@@ -48,8 +49,7 @@ class Byte3 {
   String toString() => "Byte3(X = $x, Y = $y, Z = $z)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Byte3 && (x == other.x && y == other.y && z == other.z);
+  bool operator ==(Object other) => other is Byte3 && (x == other.x && y == other.y && z == other.z);
 }
 
 class Byte4 {
@@ -63,11 +63,11 @@ class Byte4 {
   // static const Byte4 MaxValue = Byte4(.maxValue, .maxValue, .maxValue, .maxValue);
 
   const Byte4(this.x, this.y, this.z, this.w);
+  Byte4.fromList(List<int> m) : this(m[0], m[1], m[2], m[3]);
   const Byte4.value(int value) : this(value, value, value, value);
 
   @override
-  int get hashCode =>
-      Hash.combine4(x.hashCode, y.hashCode, z.hashCode, w.hashCode);
+  int get hashCode => Hash.combine4(x.hashCode, y.hashCode, z.hashCode, w.hashCode);
 
   Byte4 setX(int value) => Byte4(value, y, z, w);
   Byte4 setY(int value) => Byte4(x, value, z, w);
@@ -78,7 +78,5 @@ class Byte4 {
   String toString() => "Byte4(X = $x, Y = $y, Z = $z, W = $w)";
 
   @override
-  bool operator ==(Object other) =>
-      other is Byte4 &&
-      (x == other.x && y == other.y && z == other.z && w == other.w);
+  bool operator ==(Object other) => other is Byte4 && (x == other.x && y == other.y && z == other.z && w == other.w);
 }
